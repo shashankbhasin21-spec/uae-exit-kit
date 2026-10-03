@@ -3,7 +3,7 @@
   var STORAGE_GRACE = 'uaeexitkit-grace-v1';
   var ITEMS = [
     { id: 'notice', phase: 'Employer notice & settlement', label: 'Resignation / end-of-contract notice given per your contract and MOHRE rules' },
-    { id: 'settlement', phase: 'Employer notice & settlement', label: 'Final settlement & gratuity tracked (employer must pay end-of-service dues within 14 days per Federal Decree-Law No. 33 of 2021 — confirm current text)' },
+    { id: 'settlement', phase: 'Employer notice & settlement', label: 'Final settlement & gratuity tracked (employer must pay end-of-service dues within 14 days per Federal Decree-Law No. 33 of 2021 \u2014 confirm current text)' },
     { id: 'experience', phase: 'Employer notice & settlement', label: 'Experience / relieving letter requested from employer' },
     { id: 'dep-visas', phase: 'Residence visas', label: 'Cancel all dependent visas BEFORE sponsor residence cancel' },
     { id: 'res-cancel', phase: 'Residence visas', label: 'Residence visa cancel started (employer via MOHRE then GDRFA/ICP; self-sponsored self-initiates)' },
@@ -81,7 +81,10 @@
 
   function formatDate(d) {
     if (!d || isNaN(d.getTime())) return '\u2014';
-    return d.toISOString().slice(0, 10);
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
   }
 
   function calcGrace() {
